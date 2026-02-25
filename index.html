@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>King of the Road — Build Your Trucking Empire</title>
+<meta name="description" content="The complete guide to building a trucking empire from zero. Real numbers. Real strategies. No BS. By Kyle Anderson.">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --gold: #D4A843;
+  --gold-light: #F5C842;
+  --dark: #080c10;
+  --dark2: #0d1218;
+  --dark3: #111820;
+  --text: #e8e8e8;
+  --text-muted: rgba(232,232,232,0.6);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--dark);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 80px;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: url('truck.jpg') center 50% / cover no-repeat;
+}
+
+.hero-grade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.55) 0%, transparent 30%, transparent 40%, rgba(0,0,0,0.75) 70%, rgba(4,8,12,0.97) 100%),
+    radial-gradient(ellipse 120% 80% at 50% 50%, transparent 30%, rgba(0,0,0,0.5) 100%);
+}
+
+.hero-content {
+  position: relative;
+  text-align: center;
+  max-width: 700px;
+  padding: 0 24px;
+  z-index: 2;
+}
+
+.hero-badge {
+  display: inline-block;
+  border: 1px solid rgba(212,168,67,0.4);
+  background: rgba(212,168,67,0.1);
+  color: var(--gold);
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.hero-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(60px, 14vw, 110px);
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 4px 40px rgba(0,0,0,0.8);
+  margin-bottom: 6px;
+}
+
+.hero-title .of-the {
+  font-size: clamp(28px, 6vw, 50px);
+  font-weight: 400;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 12px;
+  display: block;
+}
+
+.hero-divider {
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 18px auto;
+}
+
+.hero-sub {
+  font-size: clamp(13px, 2vw, 16px);
+  font-weight: 400;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.hero-tagline {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: linear-gradient(135deg, #D4A843, #F5C842, #D4A843);
+  color: #000;
+  font-family: 'Oswald', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 16px 48px;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: all 0.2s;
+  box-shadow: 0 4px 30px rgba(212,168,67,0.35);
+  margin-bottom: 16px;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(212,168,67,0.5);
+}
+
+.hero-author {
+  display: block;
+  font-size: 10px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 12px;
+}
+
+/* Gold accent bar at top */
+.accent-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+  z-index: 100;
+}
+
+/* ── STATS STRIP ── */
+.stats-strip {
+  background: var(--dark2);
+  border-top: 1px solid rgba(212,168,67,0.15);
+  border-bottom: 1px solid rgba(212,168,67,0.15);
+  padding: 28px 24px;
+}
+
+.stats-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  text-align: center;
+}
+
+.stat-num {
+  font-family: 'Oswald', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--gold);
+  display: block;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* ── SECTIONS ── */
+.section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 80px 24px;
+}
+
+.section-label {
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.section-rule {
+  width: 50px;
+  height: 2px;
+  background: var(--gold);
+  margin-bottom: 24px;
+}
+
+.section-body {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  max-width: 620px;
+}
+
+/* ── WHAT YOU'LL LEARN ── */
+.learn-bg {
+  background: var(--dark2);
+}
+
+.learn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2px;
+  margin-top: 48px;
+}
+
+.learn-item {
+  background: var(--dark3);
+  padding: 28px 24px;
+  border-left: 3px solid var(--gold);
+  transition: background 0.2s;
+}
+
+.learn-item:hover {
+  background: #141e28;
+}
+
+.learn-num {
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.learn-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.learn-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ── BOOK PREVIEW ── */
+.book-section {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.book-cover-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 260px;
+}
+
+.book-cover-img {
+  width: 100%;
+  border-radius: 4px;
+  box-shadow:
+    -8px 8px 0 rgba(0,0,0,0.6),
+    0 30px 60px rgba(0,0,0,0.7),
+    0 0 0 1px rgba(212,168,67,0.2);
+  display: block;
+}
+
+/* CSS book cover fallback */
+.book-cover-css {
+  width: 100%;
+  aspect-ratio: 2/3;
+  background: linear-gradient(180deg, #080c18 0%, #0c1525 40%, #060e18 100%);
+  border-radius: 4px;
+  box-shadow: -8px 8px 0 rgba(0,0,0,0.6), 0 30px 60px rgba(0,0,0,0.7), 0 0 0 1px rgba(212,168,67,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20px 16px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.book-cover-css::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.book-cover-css::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('truck.jpg') center 50% / cover no-repeat;
+  opacity: 0.5;
+}
+
+.book-cover-css-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+  z-index: 1;
+}
+
+.book-cover-text {
+  position: relative;
+  z-index: 2;
+}
+
+.bct-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 0.9;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.bct-of {
+  font-size: 14px;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 6px;
+  display: block;
+}
+
+.bct-divider {
+  width: 30px;
+  height: 1px;
+  background: var(--gold);
+  margin: 8px auto;
+}
+
+.bct-sub {
+  font-size: 7px;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+
+.bct-tag {
+  font-size: 6px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.book-details h3 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.book-details p {
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.book-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.meta-item {
+  text-align: center;
+}
+
+.meta-val {
+  font-family: 'Oswald', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gold);
+  display: block;
+}
+
+.meta-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ── WHO THIS IS FOR ── */
+.audience-bg {
+  background: var(--dark2);
+}
+
+.audience-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.audience-item {
+  background: rgba(212,168,67,0.06);
+  border: 1px solid rgba(212,168,67,0.2);
+  padding: 20px 20px;
+  border-radius: 2px;
+  text-align: center;
+}
+
+.audience-icon {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.audience-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+/* ── EMAIL CAPTURE ── */
+.capture-bg {
+  background: linear-gradient(135deg, #0d1520 0%, #080e18 100%);
+  border-top: 1px solid rgba(212,168,67,0.15);
+  border-bottom: 1px solid rgba(212,168,67,0.15);
+}
+
+.capture-inner {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.capture-inner .section-title {
+  margin-bottom: 12px;
+}
+
+.capture-inner .section-body {
+  margin: 0 auto 32px;
+}
+
+.email-form {
+  display: flex;
+  gap: 0;
+  max-width: 480px;
+  margin: 0 auto 12px;
+}
+
+.email-input {
+  flex: 1;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(212,168,67,0.3);
+  border-right: none;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  padding: 14px 18px;
+  outline: none;
+  border-radius: 2px 0 0 2px;
+  transition: border-color 0.2s;
+}
+
+.email-input::placeholder { color: rgba(255,255,255,0.3); }
+.email-input:focus { border-color: var(--gold); }
+
+.email-btn {
+  background: var(--gold);
+  color: #000;
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 0 2px 2px 0;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.email-btn:hover { background: var(--gold-light); }
+
+.capture-note {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+/* ── BUY SECTION ── */
+.buy-section {
+  text-align: center;
+  padding: 80px 24px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.buy-section .section-title {
+  margin: 0 auto 12px;
+}
+
+.buy-section .section-rule {
+  margin: 0 auto 20px;
+}
+
+.buy-section .section-body {
+  margin: 0 auto 36px;
+}
+
+.buy-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-secondary {
+  display: inline-block;
+  border: 1px solid rgba(212,168,67,0.5);
+  color: var(--gold);
+  font-family: 'Oswald', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: rgba(212,168,67,0.1);
+  border-color: var(--gold);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: #050810;
+  border-top: 1px solid rgba(212,168,67,0.1);
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.footer-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.footer-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.footer-copy {
+  font-size: 11px;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.5px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .book-section { grid-template-columns: 1fr; }
+  .book-cover-wrap { max-width: 200px; margin: 0 auto; }
+  .email-form { flex-direction: column; }
+  .email-input { border-right: 1px solid rgba(212,168,67,0.3); border-bottom: none; border-radius: 2px 2px 0 0; }
+  .email-btn { border-radius: 0 0 2px 2px; }
+}
+</style>
+</head>
+<body>
+
+<div class="accent-bar"></div>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grade"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Now Available</div>
+    <div class="hero-title">
+      KING<br>
+      <span class="of-the">OF THE</span><br>
+      ROAD
+    </div>
+    <div class="hero-divider"></div>
+    <p class="hero-sub">The complete guide to building a trucking empire from zero.</p>
+    <p class="hero-tagline">Real Numbers. Real Strategies. No BS.</p>
+    <a href="https://buy.stripe.com/8x25kC7ks88l76955igw000" class="btn-primary">Get the Book — $24.99</a>
+    <span class="hero-author">By Kyle Anderson</span>
+  </div>
+</section>
+
+<!-- ── STATS ── -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div>
+      <span class="stat-num">$940B</span>
+      <span class="stat-label">US Trucking Industry</span>
+    </div>
+    <div>
+      <span class="stat-num">20</span>
+      <span class="stat-label">Chapters</span>
+    </div>
+    <div>
+      <span class="stat-num">$150k+</span>
+      <span class="stat-label">Owner-Op Annual Revenue</span>
+    </div>
+    <div>
+      <span class="stat-num">No BS</span>
+      <span class="stat-label">Guaranteed</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── WHAT YOU'LL LEARN ── -->
+<div class="learn-bg">
+  <div class="section" style="max-width:1000px;">
+    <p class="section-label">Inside the Book</p>
+    <h2 class="section-title">Everything You Need.<br>Nothing You Don't.</h2>
+    <div class="section-rule"></div>
+    <div class="learn-grid">
+      <div class="learn-item">
+        <div class="learn-num">Part I</div>
+        <div class="learn-title">The Opportunity</div>
+        <div class="learn-desc">Why trucking is one of the last great wealth-building industries — and how to spot your lane before you spend a dollar.</div>
+      </div>
+      <div class="learn-item">
+        <div class="learn-num">Part II</div>
+        <div class="learn-title">The Blueprint</div>
+        <div class="learn-desc">CDL, DOT authority, MC numbers, insurance, equipment selection. The complete setup checklist with real costs.</div>
+      </div>
+      <div class="learn-item">
+        <div class="learn-num">Part III</div>
+        <div class="learn-title">The Money</div>
+        <div class="learn-desc">Where the loads are, what to charge, how to negotiate rates, and how to cut your fuel bill by 20%.</div>
+      </div>
+      <div class="learn-item">
+        <div class="learn-num">Part IV</div>
+        <div class="learn-title">The Business</div>
+        <div class="learn-desc">LLC vs S-Corp, taxes, bookkeeping, compliance, ELDs, CSA scores — the back-office stuff that makes or breaks you.</div>
+      </div>
+      <div class="learn-item">
+        <div class="learn-num">Part V</div>
+        <div class="learn-title">The Empire</div>
+        <div class="learn-desc">How to scale from one truck to five, build a brand, land direct shipper contracts, and own the future of the industry.</div>
+      </div>
+      <div class="learn-item">
+        <div class="learn-num">Appendices</div>
+        <div class="learn-title">Ready-to-Use Tools</div>
+        <div class="learn-desc">Startup cost calculator, pre-trip inspection checklist, first 90-day plan, glossary of 30 essential terms, and resource directory.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── BOOK + DETAILS ── -->
+<div class="section">
+  <div class="book-section">
+    <div class="book-cover-wrap">
+      <div class="book-cover-css">
+        <div class="book-cover-css-overlay"></div>
+        <div class="book-cover-text">
+          <div class="bct-title">KING<br><span class="bct-of">OF THE</span><br>ROAD</div>
+          <div class="bct-divider"></div>
+          <div class="bct-sub">The Complete Guide to Building a<br>Trucking Empire from Zero</div>
+          <div class="bct-tag">Real Numbers. Real Strategies. No BS.</div>
+        </div>
+      </div>
+    </div>
+    <div class="book-details">
+      <p class="section-label">About the Book</p>
+      <h3>Built for the road.<br>Written for the grind.</h3>
+      <p>This isn't a theory book. It's a step-by-step manual written for owner-operators, aspiring truckers, brokers, and dispatchers who want to build a real business — not just drive a truck.</p>
+      <p>Every number in this book is real. Every strategy has been tested. Kyle Anderson breaks down how the trucking industry actually works and hands you the exact playbook to own your piece of it.</p>
+      <div class="book-meta">
+        <div class="meta-item">
+          <span class="meta-val">20</span>
+          <span class="meta-label">Chapters</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-val">36k+</span>
+          <span class="meta-label">Words</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-val">5</span>
+          <span class="meta-label">Appendices</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-val">$0</span>
+          <span class="meta-label">Fluff</span>
+        </div>
+      </div>
+      <a href="https://buy.stripe.com/8x25kC7ks88l76955igw000" class="btn-primary">Get the Book — $24.99</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── WHO IT'S FOR ── -->
+<div class="audience-bg">
+  <div class="section">
+    <p class="section-label">Who This Is For</p>
+    <h2 class="section-title">Built for Everyone<br>in the Industry</h2>
+    <div class="section-rule"></div>
+    <div class="audience-list">
+      <div class="audience-item">
+        <div class="audience-icon">01</div>
+        <div class="audience-name">Owner-Operators</div>
+      </div>
+      <div class="audience-item">
+        <div class="audience-icon">02</div>
+        <div class="audience-name">Aspiring Truckers</div>
+      </div>
+      <div class="audience-item">
+        <div class="audience-icon">03</div>
+        <div class="audience-name">Fleet Builders</div>
+      </div>
+      <div class="audience-item">
+        <div class="audience-icon">04</div>
+        <div class="audience-name">Freight Brokers</div>
+      </div>
+      <div class="audience-item">
+        <div class="audience-icon">05</div>
+        <div class="audience-name">Dispatchers</div>
+      </div>
+      <div class="audience-item">
+        <div class="audience-icon">06</div>
+        <div class="audience-name">Industry Newbies</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── EMAIL CAPTURE ── -->
+<div class="capture-bg">
+  <div class="capture-inner">
+    <p class="section-label">Stay in the Loop</p>
+    <h2 class="section-title">Get Early Access</h2>
+    <div class="section-rule" style="margin: 0 auto 20px;"></div>
+    <p class="section-body">Drop your email and get launch updates, a free sample chapter, and first access to the King of the Road community when it opens.</p>
+    <form class="email-form" onsubmit="handleSubmit(event)">
+      <input type="email" class="email-input" placeholder="Your email address" required />
+      <button type="submit" class="email-btn">Get Access</button>
+    </form>
+    <p class="capture-note">No spam. Unsubscribe any time.</p>
+  </div>
+</div>
+
+<!-- ── BUY ── -->
+<div id="buy">
+  <div class="buy-section">
+    <p class="section-label">Get Your Copy</p>
+    <h2 class="section-title">Ready to Own the Road?</h2>
+    <div class="section-rule"></div>
+    <p class="section-body">Available on Amazon in ebook and paperback. One book. Everything you need to build your trucking empire.</p>
+    <div class="buy-buttons">
+      <a href="https://buy.stripe.com/8x25kC7ks88l76955igw000" class="btn-primary">Buy the Book — $24.99</a>
+      <a href="https://buy.stripe.com/8x25kC7ks88l76955igw000" class="btn-secondary">Download Ebook</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── MENTORSHIP ── -->
+<div id="mentorship" style="background: linear-gradient(135deg, #080e18 0%, #0d1828 50%, #060c14 100%); border-top: 1px solid rgba(212,168,67,0.15);">
+  <div class="section" style="max-width:800px;">
+    <p class="section-label">90-Day Mentorship Program</p>
+    <h2 class="section-title">Work Directly<br>With Kyle</h2>
+    <div class="section-rule"></div>
+    <p class="section-body" style="margin-bottom:16px;">This isn't a course. It's direct, personal mentorship. Kyle works with a small group of serious people who are ready to build a real trucking business — and need someone in their corner who has done it.</p>
+    <p class="section-body" style="margin-bottom:40px;">Limited spots. Application required. If you're ready to stop thinking about it and start building it, apply below.</p>
+
+    <div style="background: rgba(212,168,67,0.05); border: 1px solid rgba(212,168,67,0.2); border-radius: 3px; padding: 40px; max-width: 700px;">
+      <h3 style="font-family:'Oswald',sans-serif; font-size:22px; font-weight:700; color:#fff; text-transform:uppercase; margin-bottom:24px; letter-spacing:1px;">Apply for Mentorship</h3>
+
+      <form id="mentorship-form" action="https://formspree.io/f/mjgejvnz" method="POST">
+        <input type="hidden" name="_subject" value="New King of the Road Mentorship Application">
+        <input type="hidden" name="_next" value="payment.html">
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+          <div>
+            <label style="display:block; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:8px;">Full Name *</label>
+            <input type="text" name="full_name" required placeholder="Your full name"
+              style="width:100%; background:rgba(255,255,255,0.04); border:1px solid rgba(212,168,67,0.25); color:#fff; font-family:'Inter',sans-serif; font-size:14px; padding:12px 16px; outline:none; border-radius:2px; transition:border-color 0.2s;"
+              onfocus="this.style.borderColor='#D4A843'" onblur="this.style.borderColor='rgba(212,168,67,0.25)'">
+          </div>
+          <div>
+            <label style="display:block; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:8px;">Phone Number *</label>
+            <input type="tel" name="phone" required placeholder="Your phone number"
+              style="width:100%; background:rgba(255,255,255,0.04); border:1px solid rgba(212,168,67,0.25); color:#fff; font-family:'Inter',sans-serif; font-size:14px; padding:12px 16px; outline:none; border-radius:2px; transition:border-color 0.2s;"
+              onfocus="this.style.borderColor='#D4A843'" onblur="this.style.borderColor='rgba(212,168,67,0.25)'">
+          </div>
+        </div>
+
+        <div style="margin-bottom:16px;">
+          <label style="display:block; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:8px;">Email Address *</label>
+          <input type="email" name="email" required placeholder="Your email address"
+            style="width:100%; background:rgba(255,255,255,0.04); border:1px solid rgba(212,168,67,0.25); color:#fff; font-family:'Inter',sans-serif; font-size:14px; padding:12px 16px; outline:none; border-radius:2px; transition:border-color 0.2s;"
+            onfocus="this.style.borderColor='#D4A843'" onblur="this.style.borderColor='rgba(212,168,67,0.25)'">
+        </div>
+
+        <div style="margin-bottom:24px;">
+          <label style="display:block; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:8px;">What are you looking to accomplish? * <span style="color:rgba(232,232,232,0.4); font-size:9px; letter-spacing:1px; text-transform:none;">(max 1,000 words)</span></label>
+          <textarea name="goals" required rows="8" maxlength="7000" placeholder="Tell Kyle what you're working toward, where you're starting from, what obstacles you're facing, and what success looks like to you in 90 days..."
+            style="width:100%; background:rgba(255,255,255,0.04); border:1px solid rgba(212,168,67,0.25); color:#fff; font-family:'Inter',sans-serif; font-size:14px; padding:12px 16px; outline:none; border-radius:2px; resize:vertical; line-height:1.6; transition:border-color 0.2s;"
+            onfocus="this.style.borderColor='#D4A843'" onblur="this.style.borderColor='rgba(212,168,67,0.25)'"
+            oninput="updateWordCount(this)"></textarea>
+          <div style="display:flex; justify-content:space-between; margin-top:6px;">
+            <span style="font-size:10px; color:rgba(232,232,232,0.35);">Be specific. This is your first impression.</span>
+            <span id="word-count" style="font-size:10px; color:rgba(212,168,67,0.6);">0 / 1,000 words</span>
+          </div>
+        </div>
+
+        <button type="submit" style="width:100%; background:linear-gradient(135deg,#D4A843,#F5C842,#D4A843); color:#000; font-family:'Oswald',sans-serif; font-size:16px; font-weight:700; letter-spacing:2px; text-transform:uppercase; padding:16px 32px; border:none; border-radius:2px; cursor:pointer; transition:all 0.2s; box-shadow:0 4px 30px rgba(212,168,67,0.3);"
+          onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 40px rgba(212,168,67,0.5)'"
+          onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 30px rgba(212,168,67,0.3)'">
+          Submit Application
+        </button>
+
+        <p style="font-size:10px; color:rgba(232,232,232,0.3); text-align:center; margin-top:12px; letter-spacing:0.5px;">After submitting, you'll be directed to complete your enrollment. Limited spots available.</p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-title">King of the Road</div>
+  <div class="footer-sub">Real Numbers. Real Strategies. No BS.</div>
+  <div class="footer-copy">&copy; 2026 Kyle Anderson. All rights reserved.</div>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const email = e.target.querySelector('input').value;
+  e.target.innerHTML = '<p style="color:#D4A843;font-family:Oswald,sans-serif;font-size:16px;letter-spacing:2px;">YOU\'RE IN. CHECK YOUR INBOX.</p>';
+  console.log('Email captured:', email);
+}
+
+function updateWordCount(textarea) {
+  const text = textarea.value.trim();
+  const words = text === '' ? 0 : text.split(/\s+/).length;
+  const counter = document.getElementById('word-count');
+  if (counter) {
+    counter.textContent = words.toLocaleString() + ' / 1,000 words';
+    counter.style.color = words > 1000 ? '#e87a10' : 'rgba(212,168,67,0.6)';
+  }
+  // Soft cap at 1000 words
+  if (words > 1000) {
+    const wordArr = text.split(/\s+/).slice(0, 1000);
+    textarea.value = wordArr.join(' ');
+  }
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 1200px;
+  height: 630px;
+  overflow: hidden;
+  font-family: 'Oswald', sans-serif;
+  position: relative;
+}
+.bg {
+  position: absolute;
+  inset: 0;
+  background: url('truck.jpg') center 45% / cover no-repeat;
+}
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.75) 50%, rgba(0,0,0,0.3) 100%);
+}
+.accent-left {
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  width: 6px;
+  background: linear-gradient(180deg, transparent, #D4A843, #F5C842, #D4A843, transparent);
+}
+.content {
+  position: absolute;
+  left: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.badge {
+  display: inline-block;
+  border: 1px solid rgba(212,168,67,0.5);
+  color: #D4A843;
+  font-size: 13px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  margin-bottom: 20px;
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+}
+.title {
+  font-family: Impact, 'Arial Black', sans-serif;
+  font-size: 110px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 0.88;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 4px 30px rgba(0,0,0,0.8);
+  margin-bottom: 4px;
+}
+.title .of-the {
+  font-size: 52px;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 12px;
+  display: block;
+}
+.divider {
+  width: 80px;
+  height: 3px;
+  background: #D4A843;
+  margin: 18px 0;
+}
+.sub {
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.5;
+  margin-bottom: 10px;
+  max-width: 480px;
+}
+.tagline {
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #D4A843;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.author {
+  position: absolute;
+  bottom: 30px;
+  left: 60px;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.url {
+  position: absolute;
+  bottom: 30px;
+  right: 40px;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  color: #D4A843;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="overlay"></div>
+<div class="accent-left"></div>
+<div class="content">
+  <div class="badge">Now Available</div>
+  <div class="title">
+    KING<br>
+    <span class="of-the">OF THE</span><br>
+    ROAD
+  </div>
+  <div class="divider"></div>
+  <div class="sub">The Complete Guide to Building a<br>Trucking Empire from Zero</div>
+  <div class="tagline">Real Numbers. Real Strategies. No BS.</div>
+</div>
+<div class="author">By Kyle Anderson</div>
+<div class="url">kingoftheroadbook.com</div>
+</body>
+</html>

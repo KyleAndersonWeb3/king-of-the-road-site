@@ -827,7 +827,10 @@ footer {
       btn.textContent = 'Sending...';
       btn.disabled = true;
 
-      // 1. Notify Kyle via Formspree
+      // 1. Save to Google Sheets leads list
+      fetch('https://script.google.com/macros/s/AKfycbz3Vz1AV9itDRBBRX-6F2mmyikDsOoKo3BGAJ2990WFV8huhJ_UkfIOhtjv3-WD1Afw2g/exec?email=' + encodeURIComponent(email) + '&source=kingoftheroadbook.com');
+
+      // 2. Notify Kyle via Formspree
       await fetch('https://formspree.io/f/mjgejvnz', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },

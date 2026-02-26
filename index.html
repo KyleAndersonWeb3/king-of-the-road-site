@@ -815,8 +815,10 @@ footer {
     <h2 class="section-title">Get Early Access</h2>
     <div class="section-rule" style="margin: 0 auto 20px;"></div>
     <p class="section-body">Drop your email and get launch updates, a free sample chapter, and first access to the King of the Road community when it opens.</p>
-    <form class="email-form" onsubmit="handleSubmit(event)">
-      <input type="email" class="email-input" placeholder="Your email address" required />
+    <form class="email-form" action="https://formspree.io/f/mjgejvnz" method="POST">
+      <input type="hidden" name="_subject" value="New King of the Road Email Signup">
+      <input type="hidden" name="_next" value="https://kingoftheroadbook.com">
+      <input type="email" name="email" class="email-input" placeholder="Your email address" required />
       <button type="submit" class="email-btn">Get Access</button>
     </form>
     <p class="capture-note">No spam. Unsubscribe any time.</p>

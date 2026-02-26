@@ -808,49 +808,7 @@ footer {
   </div>
 </div>
 
-<!-- ── EMAIL CAPTURE ── -->
-<div class="capture-bg">
-  <div class="capture-inner">
-    <p class="section-label">Stay in the Loop</p>
-    <h2 class="section-title">Get Early Access</h2>
-    <div class="section-rule" style="margin: 0 auto 20px;"></div>
-    <p class="section-body">Drop your email and get launch updates, a free sample chapter, and first access to the King of the Road community when it opens.</p>
-    <form class="email-form" id="earlyAccessForm">
-      <input type="email" id="earlyAccessEmail" class="email-input" placeholder="Your email address" required />
-      <button type="submit" class="email-btn" id="earlyAccessBtn">Get Access</button>
-    </form>
-    <script>
-    document.getElementById('earlyAccessForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const email = document.getElementById('earlyAccessEmail').value;
-      const btn = document.getElementById('earlyAccessBtn');
-      btn.textContent = 'Sending...';
-      btn.disabled = true;
 
-      // Send to Apps Script — saves lead + sends welcome email via Gmail
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbz3Vz1AV9itDRBBRX-6F2mmyikDsOoKo3BGAJ2990WFV8huhJ_UkfIOhtjv3-WD1Afw2g/exec';
-      try {
-        await fetch(scriptURL + '?email=' + encodeURIComponent(email) + '&source=kingoftheroadbook.com', {mode: 'no-cors'});
-      } catch(err) {}
-
-      // Also notify Kyle via Formspree
-      try {
-        await fetch('https://formspree.io/f/mjgejvnz', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({ email: email, _subject: 'New Early Access Signup: ' + email })
-        });
-      } catch(err) {}
-
-
-
-      // Redirect to thank you page
-      window.location.href = 'https://kingoftheroadbook.com/thankyou.html';
-    });
-    </script>
-    <p class="capture-note">No spam. Unsubscribe any time.</p>
-  </div>
-</div>
 
 <!-- ── BUY ── -->
 <div id="buy">

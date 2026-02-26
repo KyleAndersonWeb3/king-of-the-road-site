@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+fetch('https://api.web3forms.com/submit', {
+  method: 'POST',
+  headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+  body: JSON.stringify({
+    access_key: '9e149c60-d257-40cf-bb4c-4f2d9fe16fd6',
+    to: 'connectwithkyle@icloud.com',
+    from_name: 'Kyle Anderson — King of the Road',
+    subject: "You're In — Here's Your Free Sample Chapter",
+    message: `Welcome to King of the Road — You're Early Access.
+
+Hey,
+
+You just made a smart move.
+
+The trucking industry generates $940 billion a year. Owner-operators who know what they're doing clear $150,000 or more annually. Most people never get there — not because they can't, but because nobody handed them the real roadmap.
+
+Read your free sample chapter here:
+https://kingoftheroadbook.com/thankyou.html
+
+GET THE FULL BOOK — $24.99:
+https://buy.stripe.com/8x25kC7ks88l76955igw000
+
+---
+WANT 24/7 DIRECT ACCESS? APPLY FOR MENTORSHIP:
+https://kingoftheroadbook.com/#mentorship
+
+— Kyle Anderson
+kingoftheroadbook.com`
+  })
+}).then(r => r.json()).then(d => document.body.innerHTML = JSON.stringify(d));
+</script>
+</body>
+</html>

@@ -827,94 +827,22 @@ footer {
       btn.textContent = 'Sending...';
       btn.disabled = true;
 
-      // 1. Save to Google Sheets leads list + send welcome email
-      new Image().src = 'https://script.google.com/macros/s/AKfycbz3Vz1AV9itDRBBRX-6F2mmyikDsOoKo3BGAJ2990WFV8huhJ_UkfIOhtjv3-WD1Afw2g/exec?email=' + encodeURIComponent(email) + '&source=kingoftheroadbook.com';
+      // Send to Apps Script — saves lead + sends welcome email via Gmail
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbz3Vz1AV9itDRBBRX-6F2mmyikDsOoKo3BGAJ2990WFV8huhJ_UkfIOhtjv3-WD1Afw2g/exec';
+      try {
+        await fetch(scriptURL + '?email=' + encodeURIComponent(email) + '&source=kingoftheroadbook.com', {mode: 'no-cors'});
+      } catch(err) {}
 
-      // 2. Notify Kyle via Formspree
-      await fetch('https://formspree.io/f/mjgejvnz', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ email: email, _subject: 'New Early Access Signup: ' + email })
-      });
+      // Also notify Kyle via Formspree
+      try {
+        await fetch('https://formspree.io/f/mjgejvnz', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ email: email, _subject: 'New Early Access Signup: ' + email })
+        });
+      } catch(err) {}
 
-      // 2. Send welcome email to subscriber via Web3Forms (free, no account needed)
-      await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          access_key: '9e149c60-d257-40cf-bb4c-4f2d9fe16fd6',
-          to: email,
-          from_name: 'Kyle Anderson — King of the Road',
-          subject: "You're In — Here's Your Free Sample Chapter",
-          message: `Welcome to King of the Road — You're Early Access.
 
-Hey,
-
-You just made a smart move.
-
-The trucking industry generates $940 billion a year. Owner-operators who know what they're doing clear $150,000 or more annually. Most people never get there — not because they can't, but because nobody handed them the real roadmap.
-
-That's exactly what King of the Road is.
-
-This isn't a theory book. It's 20 chapters of real numbers, real strategies, and zero fluff — built for people who are done thinking about it and ready to build something real.
-
-────────────────────────────────────
-FREE SAMPLE — FROM CHAPTER 1
-────────────────────────────────────
-
-The average truck driver is 49 years old. The industry is short 60,000–82,000 drivers RIGHT NOW — projected to hit 160,000+ by 2030. That's not a problem. That's your opportunity.
-
-One owner-operator. Two years in. Truck paid off. Grossing $250,000 a year. Net take-home over $100,000. No degree. No boss. No cubicle.
-
-Real income numbers:
-• Company Drivers: $65,000–$85,000/year
-• Owner-Operators (net): $70,000–$150,000+/year  
-• Fleet Owners (5 trucks): $150,000–$300,000+/year
-
-That's what's waiting on the other side of the decision to start.
-
-Read the full sample chapter here:
-https://kingoftheroadbook.com/thankyou.html
-
-────────────────────────────────────
-GET THE FULL BOOK — $24.99
-────────────────────────────────────
-
-20 chapters. Everything you need to go from zero to running your own trucking operation.
-
-→ https://buy.stripe.com/8x25kC7ks88l76955igw000
-
-────────────────────────────────────
-WANT TO GO FASTER? 90-DAY MENTORSHIP
-────────────────────────────────────
-
-Most people read books. A small group of people get direct access to someone who has already mapped the road.
-
-This is not a course. Not a group program. This is Kyle Anderson — personally in your corner for 90 days.
-
-What you get:
-✓ 24/7 direct access to Kyle — text, call, message anytime
-✓ A personalized roadmap built around YOUR goals and budget
-✓ Weekly 1-on-1 check-ins to track progress and adjust strategy
-✓ Real-time guidance on equipment, financing, freight, and rates
-✓ Help finding loads, negotiating with brokers, landing your first direct shipper
-✓ Kyle personally reviews your numbers, truck choice, and contracts
-✓ Access to the King of the Road private community
-✓ Full digital copy of the book included
-
-This is for the person who wants results in 90 days, not 90 months.
-Spots are limited.
-
-Apply here → https://kingoftheroadbook.com/#mentorship
-
-────────────────────────────────────
-
-Real Numbers. Real Strategies. No BS.
-
-— Kyle Anderson
-kingoftheroadbook.com`
-        })
-      });
 
       // Redirect to thank you page
       window.location.href = 'https://kingoftheroadbook.com/thankyou.html';

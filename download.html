@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>King of the Road — Your Book is Ready</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --gold: #D4A843; --gold-light: #F5C842; --dark: #080c10; --dark2: #0d1218; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--dark);
+  color: #e8e8e8;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+}
+.accent-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+  z-index: 100;
+}
+.card {
+  background: var(--dark2);
+  border: 1px solid rgba(212,168,67,0.25);
+  border-radius: 4px;
+  max-width: 580px;
+  width: 100%;
+  padding: 52px 44px;
+  text-align: center;
+}
+.check-icon {
+  width: 72px;
+  height: 72px;
+  background: rgba(212,168,67,0.12);
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 32px;
+}
+.badge {
+  display: inline-block;
+  border: 1px solid rgba(212,168,67,0.4);
+  background: rgba(212,168,67,0.1);
+  color: var(--gold);
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 34px;
+  font-weight: 800;
+  color: #fff;
+  text-transform: uppercase;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+.divider {
+  width: 50px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 18px auto;
+}
+.subtitle {
+  font-size: 15px;
+  color: rgba(232,232,232,0.7);
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+.download-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: #080c10;
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 16px 40px;
+  border-radius: 3px;
+  transition: opacity 0.2s, transform 0.2s;
+  margin-bottom: 16px;
+  width: 100%;
+}
+.download-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+.kindle-link {
+  display: block;
+  font-size: 13px;
+  color: rgba(212,168,67,0.6);
+  text-decoration: none;
+  margin-top: 12px;
+  transition: color 0.2s;
+}
+.kindle-link:hover { color: var(--gold); }
+.instructions {
+  background: rgba(212,168,67,0.06);
+  border: 1px solid rgba(212,168,67,0.15);
+  border-radius: 3px;
+  padding: 20px 24px;
+  margin-top: 28px;
+  text-align: left;
+}
+.instructions p {
+  font-size: 13px;
+  color: rgba(232,232,232,0.55);
+  line-height: 1.7;
+}
+.instructions strong { color: var(--gold); }
+.logo {
+  font-family: 'Oswald', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(212,168,67,0.4);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-top: 32px;
+}
+</style>
+</head>
+<body>
+<div class="accent-bar"></div>
+<div class="card">
+  <div class="check-icon">✓</div>
+  <div class="badge">Payment Confirmed</div>
+  <h1>Your Book<br>is Ready</h1>
+  <div class="divider"></div>
+  <p class="subtitle">
+    Thank you for your purchase. Click below to download your copy of
+    <strong style="color:#fff;">King of the Road</strong> — your PDF will open immediately.
+  </p>
+
+  <a href="https://drive.google.com/file/d/16YdQqzyKcRGU-tVDQbtYA-Qnvziph4r0/view" class="download-btn" target="_blank">
+    ↓ Download Your Book (PDF)
+  </a>
+
+  <a href="https://drive.google.com/uc?export=download&id=16YdQqzyKcRGU-tVDQbtYA-Qnvziph4r0" class="kindle-link">
+    Direct download link (save to device)
+  </a>
+
+  <div class="instructions">
+    <p>
+      <strong>On mobile:</strong> Tap the button above. The PDF will open in your browser — tap the share icon to save it or open in your PDF reader app.<br><br>
+      <strong>On desktop:</strong> Click the button. The book opens in a new tab. Hit Ctrl+S (or Cmd+S on Mac) to save it to your computer.<br><br>
+      <strong>For Kindle:</strong> Save the PDF to your device, then email it to your Kindle address or use the Send to Kindle app.
+    </p>
+  </div>
+
+  <div class="logo">King of the Road</div>
+</div>
+</body>
+</html>
